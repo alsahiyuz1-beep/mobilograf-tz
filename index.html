@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="uz"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#C92C35">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mobilograf TZ">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="a/alsahiy_icon_qizil.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>al-sahiy mobilograf TZ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: iPhone-ilova - qizil brend sarlavha, 5 bo'limli pastki tab-panel, bitta ustun kontent */
+@font-face{font-family:"Rubik";src:url("f/Rubik-VF.ttf") format("truetype");font-weight:300 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Rubik";src:url("f/Rubik-Italic-VF.ttf") format("truetype");font-weight:300 900;font-style:italic;font-display:swap}
+:root{
+  --red:#C92C35; --on-red:#FFFFFF;
+  --bg:#FFFFFF; --surface:#F7F3F2; --line:#ECE3E2;
+  --fg:#1B1213; --muted:#6C5F60; --accent:#C92C35;
+  --ok:#1F8A5B;
+  --font:"Rubik",-apple-system,"SF Pro Text",system-ui,sans-serif;
+  --tabh:64px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#130E0F; --surface:#1E1718; --line:#33292A; --fg:#F6EEEE; --muted:#B4A6A7; --accent:#F0646C; --ok:#4CC28D; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#130E0F; --surface:#1E1718; --line:#33292A; --fg:#F6EEEE; --muted:#B4A6A7; --accent:#F0646C; --ok:#4CC28D; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{margin:0}
+.asset>div{min-width:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--red)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:640px;margin:0 auto}
+
+/* sarlavha */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--red);color:var(--on-red)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.top img{height:26px;width:auto;display:block}
+.top .tag{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;opacity:.9;text-align:right}
+
+main{padding-bottom:calc(var(--tabh) + env(safe-area-inset-bottom,0px) + 24px)}
+.view{display:flex;flex-direction:column;gap:28px;padding-block:20px 8px}
+.view[hidden]{display:none!important}
+
+h1{font-size:34px;line-height:1;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h2{font-size:22px;line-height:1.1;font-weight:800;text-transform:uppercase;margin:0 0 12px;text-wrap:balance}
+h3{font-size:16px;font-weight:600;margin:0}
+p{margin:0}
+.lead{color:var(--muted);font-size:15px;margin-top:8px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+
+/* hero */
+.hero{background:var(--red);color:var(--on-red);border-radius:20px;padding:22px 20px;position:relative;overflow:hidden}
+.hero .eyebrow{color:var(--on-red);opacity:.85}
+.hero h1{font-size:40px;position:relative}
+.hero p{position:relative;margin-top:10px;opacity:.92;font-size:15px}
+.hero .heart{position:absolute;right:-30px;bottom:-34px;width:170px;opacity:.16}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.25);border-radius:12px;overflow:hidden;margin-top:18px;position:relative}
+.facts div{background:var(--red);padding:10px 12px}
+.facts b{display:block;font-size:12px;font-weight:500;opacity:.8}
+.facts span{font-size:15px;font-weight:600}
+
+/* ro'yxatlar */
+.rows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.rows>div{display:grid;grid-template-columns:112px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.rows dt,.rows .k{color:var(--muted);font-size:14px}
+.rows .v{font-size:15px;min-width:0}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start;counter-increment:s}
+.steps li::before{content:counter(s);width:32px;height:32px;border-radius:50%;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--accent);font-variant-numeric:tabular-nums}
+.steps p{font-size:15px;padding-top:4px}
+.steps small{display:block;color:var(--muted);font-size:13px}
+.bul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.bul li::marker{color:var(--accent)}
+.note{background:var(--surface);border-radius:14px;padding:14px 16px;font-size:14px;color:var(--muted)}
+.note b{color:var(--fg)}
+
+/* ssenariy */
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:5px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--fg)}
+.chip.red{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.progress{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.bar{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s ease-out}
+.kadrlar{display:flex;flex-direction:column;gap:12px}
+.kadr{border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bg);transition:border-color .2s ease-out}
+.kadr.done{border-color:var(--ok)}
+.kadr head,.khead{display:flex;align-items:center;gap:10px}
+.knum{font-size:28px;font-weight:800;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums;min-width:36px}
+.ktag{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);flex:1}
+.check{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--muted);min-height:44px;padding:0 4px;cursor:pointer;user-select:none}
+.check input{appearance:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--line);margin:0;display:grid;place-items:center;transition:background .15s ease-out,border-color .15s ease-out}
+.check input:checked{background:var(--ok);border-color:var(--ok)}
+.check input:checked::after{content:"";width:10px;height:6px;border:2.5px solid #fff;border-top:0;border-right:0;transform:translateY(-1px) rotate(-45deg)}
+.check input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.say{font-size:18px;line-height:1.35;font-weight:500;border-left:3px solid var(--red);padding-left:12px}
+.kline{font-size:14px;color:var(--muted)}
+.kline b{color:var(--fg);font-weight:600}
+.kdo{background:var(--surface);border-radius:10px;padding:10px 12px;font-size:14px}
+.kdo b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+
+/* audio */
+.player{background:var(--red);color:var(--on-red);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:16px}
+.prow{display:flex;align-items:center;gap:16px}
+.pbtn{width:64px;height:64px;border-radius:50%;border:0;background:#fff;color:var(--red);display:grid;place-items:center;cursor:pointer;flex:none;transition:transform .15s ease-out}
+.pbtn:active{transform:scale(.95)}
+.pbtn svg{width:26px;height:26px}
+.ptitle b{display:block;font-size:18px}
+.ptitle span{font-size:14px;opacity:.85}
+.seek{width:100%;accent-color:#fff;height:28px}
+.times{display:flex;justify-content:space-between;font-size:13px;opacity:.9;font-variant-numeric:tabular-nums;margin-top:-8px}
+.script-lines{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.script-lines div{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.script-lines span{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* dizayn */
+.swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sw{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg);text-align:left;padding:0;cursor:pointer;font:inherit;color:inherit;transition:transform .15s ease-out}
+.sw:active{transform:scale(.97)}
+.sw i{display:block;height:64px}
+.sw div{padding:8px 10px}
+.sw b{display:block;font-size:13px}
+.sw span{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.typespec{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.typespec>div{padding:14px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.typespec .s1{font-size:30px;font-weight:800;text-transform:uppercase;line-height:1;letter-spacing:-.01em}
+.typespec .s2{font-size:34px;font-weight:900;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.typespec .s2 small{font-size:16px;font-weight:700}
+.typespec .s3{font-size:17px;font-weight:500}
+.typespec .k{font-size:13px;color:var(--muted)}
+.frame{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:start}
+.frame svg{width:100%;height:auto;display:block}
+.legend{display:flex;flex-direction:column;gap:10px;font-size:14px;min-width:0}
+.legend div{display:grid;grid-template-columns:14px 1fr;gap:8px;align-items:start}
+.legend i{width:14px;height:14px;border-radius:4px;margin-top:4px}
+.refs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.refs button{padding:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);cursor:pointer;text-align:left;font:inherit;color:inherit;transition:transform .15s ease-out}
+.refs button:active{transform:scale(.97)}
+.refs img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.refs span{display:block;padding:8px 10px;font-size:13px;font-weight:500}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--line);color:var(--fg);text-decoration:none;font-weight:500;font-size:15px}
+.dont{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dont div{border-radius:14px;padding:12px 14px;font-size:14px;background:var(--surface)}
+.dont b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.dont .y b{color:var(--ok)} .dont .n b{color:var(--accent)}
+.dont ul{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px}
+
+/* baza */
+.assets{display:flex;flex-direction:column;gap:10px}
+.asset{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px}
+.thumb{width:72px;height:72px;border-radius:10px;display:grid;place-items:center;padding:10px;background:#FFFFFF;border:1px solid var(--line)}
+.thumb.redbg{background:var(--red);border-color:var(--red)}
+.thumb img{max-height:100%;width:auto}
+.asset h3{font-size:15px}
+.asset p{font-size:13px;color:var(--muted)}
+.dl{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 14px;border-radius:10px;border:0;background:var(--red);color:var(--on-red);font:inherit;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .15s ease-out,opacity .15s ease-out}
+.btn.ghost{background:var(--surface);color:var(--fg);border:1px solid var(--line)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible,.tab:focus-visible,.sw:focus-visible,.refs button:focus-visible,.pbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn[aria-busy="true"]{opacity:.6}
+.big{width:100%;min-height:52px;font-size:16px;border-radius:14px}
+
+/* tab panel */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:saturate(1.6) blur(18px);backdrop-filter:saturate(1.6) blur(18px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+.tabs .wrap{display:grid;grid-template-columns:repeat(5,1fr);height:var(--tabh)}
+.tab{border:0;background:none;font:inherit;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:500;cursor:pointer;transition:color .15s ease-out}
+.tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tab[aria-selected="true"]{color:var(--accent)}
+
+/* lightbox, toast */
+.lb{position:fixed;inset:0;z-index:40;background:rgba(10,6,7,.92);display:flex;flex-direction:column;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 56px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 24px) max(12px,env(safe-area-inset-left,0px))}
+.lb img{width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+.lb button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:calc(env(safe-area-inset-right,0px) + 12px);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:22px;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:calc(var(--tabh) + env(safe-area-inset-bottom,0px) + 14px);transform:translate(-50%,8px);background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .2s ease-out,transform .2s ease-out;z-index:45;max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:380px){h1{font-size:30px}.hero h1{font-size:34px}.rows>div{grid-template-columns:96px 1fr}.frame{grid-template-columns:120px 1fr}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head><body>
+
+<header class="top gut"><div class="wrap">
+  <img src="a/alsahiy_logo_oq.svg" alt="al-sahiy">
+  <div class="tag">Mobilograf · konkurs TZ</div>
+</div></header>
+
+<main class="gut"><div class="wrap">
+
+<!-- VAZIFA -->
+<section class="view" id="v-vazifa">
+  <div class="hero">
+    <img class="heart" src="a/alsahiy_yurak_oq.svg" alt="">
+    <div class="eyebrow">Konkurs topshirig'i</div>
+    <h1>Somsa turlari</h1>
+    <p>Berilgan ozvuchka va ssenariy asosida al-sahiy uslubida bitta Instagram Reels tayyorlang.</p>
+    <div class="facts">
+      <div><b>Format</b><span>Reels 9:16</span></div>
+      <div><b>O'lcham</b><span>1080×1920</span></div>
+      <div><b>Uzunlik</b><span>Ozvuchka bo'yicha</span></div>
+      <div><b>Kadrlar</b><span>11 ta</span></div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Ish haqida</h2>
+    <div class="rows">
+      <div><span class="k">Vazifa</span><span class="v">Brend uslubida video suratga olish va montaj qilish</span></div>
+      <div><span class="k">Format</span><span class="v">Offline, ofisda (G'azalkent)</span></div>
+      <div><span class="k">Ish vaqti</span><span class="v">To'liq ish kuni</span></div>
+      <div><span class="k">Qabul</span><span class="v">Konkurs asosida</span></div>
+    </div>
+    <p class="lead">Sizga TZ va kerakli materiallar beriladi. Shu materiallar asosida brend uslubida, ssenariy bo'yicha kontent tayyorlab topshirasiz. Natijaga qarab ishga qabul qilish haqida qaror qilamiz.</p>
+  </section>
+
+  <section>
+    <h2>Ish tartibi</h2>
+    <ol class="steps">
+      <li><p>Ozvuchkani tinglang<small>Montajning asosi - kadrlar unga moslab kesiladi</small></p></li>
+      <li><p>Ssenariyni o'qing va kadrlar ro'yxatini tuzing<small>Rekvizit ro'yxati "Ssenariy" bo'limida</small></p></li>
+      <li><p>11 kadrni suratga oling<small>Olingan kadrni ro'yxatda belgilab boring</small></p></li>
+      <li><p>Ozvuchka ostiga montaj qiling</p></li>
+      <li><p>Titr va logoni brend qoidasi bo'yicha qo'ying<small>"Dizayn" bo'limi</small></p></li>
+      <li><p>Fayllarni talab bo'yicha topshiring</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Topshirish</h2>
+    <ul class="bul">
+      <li>Yakuniy video: MP4, H.264, 1080×1920, 30 fps</li>
+      <li>Toza video (titr va logosiz)</li>
+      <li>Titr qatlami: MOV ProRes 4444 (shaffof fon)</li>
+      <li>Audio: nutq, fon tovushi, SFX va mix alohida - WAV 48 kHz 24-bit</li>
+      <li>CapCut loyihasi (treklar alohida, tahrirlanadigan)</li>
+      <li>Hamma fayl bir xil uzunlikda, 00:00 dan boshlanadi</li>
+      <li>Bitta ZIP (50 MB dan kichik bo'laklar) + 30 MB dan kichik tez ko'rish nusxasi</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Nimaga qaraymiz</h2>
+    <div class="rows">
+      <div><span class="k">Uslub</span><span class="v">al-sahiy brend tizimiga moslik: rang, shrift, logo</span></div>
+      <div><span class="k">Ssenariy</span><span class="v">Har bir kadr va ko'rsatma bajarilgani</span></div>
+      <div><span class="k">Kadr</span><span class="v">Yorug'lik, fokus, stabil kamera, ishtaha ochadigan makro</span></div>
+      <div><span class="k">Montaj</span><span class="v">Ritm va ozvuchka bilan sinxron kesish</span></div>
+      <div><span class="k">Fayllar</span><span class="v">To'liq va tartibli topshirilgan</span></div>
+    </div>
+  </section>
+</section>
+
+<!-- SSENARIY -->
+<section class="view" id="v-ssenariy" hidden>
+  <div>
+    <div class="eyebrow">Reels ssenariysi</div>
+    <h1>Somsa turlari</h1>
+    <p class="lead">Maqsad: al-sahiy somsa assortimentini ko'rsatish.</p>
+  </div>
+  <div class="meta">
+    <span class="chip red">Instagram Reels</span><span class="chip">9:16</span><span class="chip">11 kadr</span><span class="chip">Ekspert qiz kadrda</span>
+  </div>
+
+  <section>
+    <h2>Rekvizit</h2>
+    <ul class="bul">
+      <li>Laganda 4 ta katta somsa (1-kadr)</li>
+      <li>Qo'y go'shtli, mol go'shtli, tovuqli, kartoshkali somsa</li>
+      <li>Mitti somsa va taqqoslash uchun oddiy somsa</li>
+      <li>Tog'ora va unga teriladigan somsalar</li>
+      <li>Ekspert qiz (al-sahiy formasida)</li>
+    </ul>
+  </section>
+
+  <div class="progress"><span id="pcount">0 / 11 olindi</span><div class="bar"><i id="pbar"></i></div></div>
+  <div class="kadrlar" id="kadrlar"></div>
+</section>
+
+<!-- OVOZ -->
+<section class="view" id="v-ovoz" hidden>
+  <div>
+    <div class="eyebrow">Material</div>
+    <h1>Ozvuchka</h1>
+    <p class="lead">Video shu ovoz ostiga yig'iladi. Ovozni tezlatmang va qayta yozmang.</p>
+  </div>
+  <div class="player">
+    <div class="prow">
+      <button class="pbtn" id="play" aria-label="Ijro etish">
+        <svg id="ic-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+        <svg id="ic-pause" viewBox="0 0 24 24" fill="currentColor" hidden><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      </button>
+      <div class="ptitle"><b>Somsa turlari</b><span>Ozvuchka · MP3 · 1:10</span></div>
+    </div>
+    <input class="seek" id="seek" type="range" min="0" max="70" step="0.1" value="0" aria-label="Ovoz joyi">
+    <div class="times"><span id="tcur">0:00</span><span id="tdur">1:10</span></div>
+    <audio id="aud" src="audio/ozvuchka.mp3" preload="metadata"></audio>
+  </div>
+  <button class="btn big" data-dl="audio/ozvuchka.mp3" data-name="al-sahiy_somsa_ozvuchka.mp3">Ozvuchkani yuklab olish</button>
+
+  <section>
+    <h2>Ovoz qoidalari</h2>
+    <ul class="bul">
+      <li>Ozvuchka asosiy - har bir so'z aniq eshitilsin</li>
+      <li>Fon musiqa ozvuchkadan 15-20 dB past</li>
+      <li>Somsa sindirish, qarsillash ovozi (4, 6, 8-kadr) - SFX alohida trekda</li>
+      <li>Yakuniy mix: -14 LUFS, cho'qqi -1 dBTP dan oshmasin</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Ssenariydagi matn</h2>
+    <div class="script-lines" id="lines"></div>
+  </section>
+</section>
+
+<!-- DIZAYN -->
+<section class="view" id="v-dizayn" hidden>
+  <div>
+    <div class="eyebrow">Dizayn TZ va referens</div>
+    <h1>Brend uslubi</h1>
+    <p class="lead">Video al-sahiy brend tizimidan chiqmaydi. Rang, shrift va logo faqat shu sahifadagidek.</p>
+  </div>
+
+  <section>
+    <h2>Ranglar</h2>
+    <div class="swatches">
+      <button class="sw" data-copy="#C92C35"><i style="background:#C92C35"></i><div><b>Qizil</b><span>#C92C35</span></div></button>
+      <button class="sw" data-copy="#FFFFFF"><i style="background:#FFFFFF;border-bottom:1px solid var(--line)"></i><div><b>Oq</b><span>#FFFFFF</span></div></button>
+      <button class="sw" data-copy="#F48124"><i style="background:#F48124"></i><div><b>Zarg'aldoq</b><span>#F48124</span></div></button>
+    </div>
+    <p class="lead">Rangga bossangiz HEX nusxalanadi. Zarg'aldoq faqat chegirma uchun - bu videoda ishlatilmaydi.</p>
+  </section>
+
+  <section>
+    <h2>Shriftlar</h2>
+    <div class="typespec">
+      <div><span class="s1">Somsa turlari</span><span class="k">DK Longreach - sarlavha, qisqa matn, KATTA HARF</span></div>
+      <div><span class="s2">32 <small>900 so'm</small></span><span class="k">Sausage - faqat narx</span></div>
+      <div><span class="s3">Qo'y go'shtli, mol go'shtli, tovuqli</span><span class="k">Rubik Medium - subtitr va qo'shimcha matn</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Titr joylashuvi</h2>
+    <div class="frame">
+      <svg viewBox="0 0 1080 1920" role="img" aria-label="Reels kadrida xavfsiz zonalar">
+        <rect x="0" y="0" width="1080" height="1920" rx="40" fill="var(--surface)" stroke="var(--line)" stroke-width="8"/>
+        <rect x="0" y="0" width="1080" height="220" fill="var(--muted)" opacity=".28"/>
+        <rect x="0" y="1500" width="1080" height="420" fill="var(--muted)" opacity=".28"/>
+        <rect x="940" y="880" width="140" height="620" fill="var(--muted)" opacity=".28"/>
+        <rect x="90" y="1180" width="820" height="230" rx="24" fill="#C92C35"/>
+        <rect x="150" y="1250" width="600" height="34" rx="17" fill="#FFFFFF"/>
+        <rect x="150" y="1310" width="420" height="34" rx="17" fill="#FFFFFF"/>
+        <rect x="380" y="760" width="320" height="90" rx="16" fill="none" stroke="#C92C35" stroke-width="8" stroke-dasharray="24 16"/>
+      </svg>
+      <div class="legend">
+        <div><i style="background:#C92C35"></i><span><b>Subtitr</b> - pastki uchdan bir qismda, 1180-1410 px oralig'ida</span></div>
+        <div><i style="background:var(--muted);opacity:.5"></i><span><b>Bo'sh zona</b> - tepada 220 px, pastda 420 px, o'ngda 140 px. Instagram tugmalari yopadi</span></div>
+        <div><i style="border:2px dashed #C92C35"></i><span><b>Logo</b> - faqat oxirgi kadrda, markazda</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Titr qoidalari</h2>
+    <ul class="bul">
+      <li>Subtitr: Rubik Medium, oq matn, qizil (#C92C35) plashkada yoki oq matn yumshoq soya bilan</li>
+      <li>Bir qatorda 4-5 so'z, ko'pi bilan 2 qator</li>
+      <li>Matn ozvuchka bilan so'zma-so'z sinxron</li>
+      <li>Brend nomi doim kichik harflarda: al-sahiy</li>
+      <li>Oxirgi kadr (2-3 s): qizil fonda oq logo yoki oq fonda qizil logo</li>
+      <li>Logo cho'zilmaydi, burilmaydi, rangi o'zgarmaydi; atrofida bo'sh joy qoladi</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Video uslubi</h2>
+    <div class="rows">
+      <div><span class="k">Rang</span><span class="v">Iliq, tabiiy. Somsa qizg'ish-oltin, oq rang oq bo'lsin. 1-kadr oq-qora, 2-kadrda "Hammasini" so'zida keskin rangga o'tish</span></div>
+      <div><span class="k">Yorug'lik</span><span class="v">Yumshoq yon yorug'lik; bug' ko'rinishi uchun orqadan kontr-yorug'</span></div>
+      <div><span class="k">Kamera</span><span class="v">4K 30 fps, sekin kadrlar uchun 60 fps. Stabil, shtativ yoki gimbal</span></div>
+      <div><span class="k">Plan</span><span class="v">Makro ko'p: xamir qarsillashi, ichidagi masalliq, bug'</span></div>
+      <div><span class="k">Ritm</span><span class="v">Kadr 1-2 s, kesish ozvuchka urg'usida</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Mumkin / mumkin emas</h2>
+    <div class="dont">
+      <div class="y"><b>Mumkin</b><ul><li>Real mahsulot, real yorug'lik</li><li>Ekspert kameraga qaraydi</li><li>Qizil brend aksenti kadrda</li></ul></div>
+      <div class="n"><b>Mumkin emas</b><ul><li>Trend filtrlar, LUT bilan rang buzish</li><li>Boshqa shriftlar</li><li>Logoni burchakda doim ushlab turish</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Referens</h2>
+    <div class="refs" id="refs"></div>
+    <p class="lead">Rasmga bossangiz kattalashadi. Jonli namunalar:</p>
+    <div class="links" style="margin-top:10px">
+      <a href="https://www.instagram.com/al_sahiyuz" target="_blank" rel="noopener">Instagram @al_sahiyuz</a>
+      <a href="https://t.me/al_sahiyuzb" target="_blank" rel="noopener">Telegram kanal</a>
+    </div>
+  </section>
+</section>
+
+<!-- BAZA -->
+<section class="view" id="v-baza" hidden>
+  <div>
+    <div class="eyebrow">Yuklab olish</div>
+    <h1>Brend bazasi</h1>
+    <p class="lead">Faqat shu fayllardan foydalaning. Asl logolar brendbukdan olingan.</p>
+  </div>
+
+  <section>
+    <h2>Logolar</h2>
+    <div class="assets" id="logos"></div>
+  </section>
+
+  <section>
+    <h2>Shriftlar</h2>
+    <div class="assets">
+      <div class="asset"><div class="thumb"><span style="font-weight:700;font-size:26px;color:#C92C35">Aa</span></div><div><h3>Rubik</h3><p>Subtitr va uzun matn · Regular / Medium</p><div class="dl"><button class="btn" data-dl="f/Rubik-VF.ttf" data-name="Rubik-VF.ttf">TTF</button><button class="btn ghost" data-dl="f/Rubik-Italic-VF.ttf" data-name="Rubik-Italic-VF.ttf">Italic TTF</button></div></div></div>
+      <div class="asset"><div class="thumb"><span style="font-weight:800;font-size:22px;color:#C92C35;text-transform:uppercase">AA</span></div><div><h3>DK Longreach</h3><p>Sarlavha · fayli alohida beriladi</p></div></div>
+      <div class="asset"><div class="thumb"><span style="font-weight:900;font-size:22px;color:#C92C35">32</span></div><div><h3>Sausage</h3><p>Narx · fayli alohida beriladi</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Materiallar</h2>
+    <div class="assets">
+      <div class="asset"><div class="thumb redbg"><img src="a/alsahiy_yurak_oq.svg" alt=""></div><div><h3>Ozvuchka</h3><p>MP3 · 1:10</p><div class="dl"><button class="btn" data-dl="audio/ozvuchka.mp3" data-name="al-sahiy_somsa_ozvuchka.mp3">MP3</button></div></div></div>
+      <div class="asset"><div class="thumb"><span style="font-weight:800;font-size:20px;color:#C92C35">TXT</span></div><div><h3>Ssenariy</h3><p>11 kadr, matn va ko'rsatmalar</p><div class="dl"><button class="btn" id="dl-script">TXT</button></div></div></div>
+      <div class="asset"><div class="thumb"><span style="font-weight:800;font-size:20px;color:#C92C35">PDF</span></div><div><h3>al-sahiy brendbuk</h3><p>To'liq PDF · 11,9 MB</p><div class="dl"><button class="btn" data-dl="bb/alsahiy_brendbuk.pdf" data-name="al-sahiy_brendbuk.pdf">PDF</button></div></div></div>
+    </div>
+  </section>
+</section>
+
+</div></main>
+
+<nav class="tabs" role="tablist" aria-label="Bo'limlar"><div class="wrap">
+  <button class="tab" role="tab" data-v="vazifa" aria-selected="true"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2.5"/><path d="M9 8.5h6M9 12h6M9 15.5h3.5"/></svg>Vazifa</button>
+  <button class="tab" role="tab" data-v="ssenariy" aria-selected="false"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3"/></svg>Ssenariy</button>
+  <button class="tab" role="tab" data-v="ovoz" aria-selected="false"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>Ovoz</button>
+  <button class="tab" role="tab" data-v="dizayn" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.9 1.4-2l-.3-.8c-.4-1.2.4-2.2 1.6-2.2H17a4 4 0 0 0 4-4c0-5-4-9-9-9z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="8" r="1"/></svg>Dizayn</button>
+  <button class="tab" role="tab" data-v="baza" aria-selected="false"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg>Baza</button>
+</div></nav>
+
+<div class="lb" id="lb" hidden><button id="lbx" aria-label="Yopish">×</button><img id="lbimg" alt=""></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const KADR=[
+ {tag:"Hook",v:"Laganda 4 ta katta somsa. Ekspert qiz ularga hayrat bilan qaraydi. Kadr oq-qora.",t:"Voy, men bularning hammasini yeyolmaymaaan-ku!",m:"Avval somsalarni, keyin qizning hayratlangan yuzini ko'rsating. Kadr oq-qora bo'lsin.",p:"Yuqoridan somsalar → yuz yirik plan"},
+ {tag:"Asosiy qismga o'tish",v:"Kadr birdan rangli holatga o'tadi. Issiq, chiroyli somsalar ko'rsatiladi.",t:"Hammasini yeyishingiz shart emas. Lekin al-sahiy somsalaridan o'zingizga mosini topishingiz aniq!",m:"Rangli kadr boshlanishi bilan somsalarni yaqinroq ko'rsating.",p:"Makro, sekin yaqinlashish"},
+ {tag:"Assortiment",v:"Bir nechta turdagi somsalar yonma-yon turadi.",t:"al-sahiyda bir-biridan mazali, sergo'sht, suvli va sochniy somsalar bor.",m:"Somsalarni navbat bilan ko'rsating. Kattaligi va ichi yaxshi ko'rinsin.",p:"Yon tomondan slider / panorama"},
+ {tag:"Ishtaha",v:"Qo'y go'shtli somsa ochib ko'rsatiladi.",t:"Qo'y go'shtli…",m:"Somsani ikkiga bo'lib, ichidagi masalliqni ko'rsating.",p:"Makro, bug' ko'rinsin"},
+ {tag:"Tanlov",v:"Mol go'shtli, keyin tovuqli somsa ko'rsatiladi.",t:"…mol go'shtli, tovuqli…",m:"Har bir turini alohida ko'rsating.",p:"2 ta qisqa kadr, ~1,5 s dan"},
+ {tag:"Assortiment",v:"Kartoshkali somsa ko'rsatiladi.",t:"Sabzavotli ta'mni xush ko'radiganlar uchun esa kartoshkali somsamiz ham bor.",m:"Somsani ochib, ichini ko'rsating.",p:"Makro, ichini ochish"},
+ {tag:"Qiziqarli detal",v:"Ekspert qo'liga mitti somsani olib, kameraga ko'rsatadi.",t:"Yana mana bunaqa mittigina somsalarni ko'ryapsizmi? Ularni buyurtma asosida tayyorlab beramiz.",m:"Mitti somsani kaftida ko'rsatsin. Oddiy somsaga nisbatan kichikligi bilinib tursin.",p:"O'rta plan, kaft kameraga yaqin"},
+ {tag:"Ishtaha ochadigan kadr",v:"Somsa ikkiga bo'linadi. Xamiri va ichidagi masalliq ko'rinadi.",t:"Qarsildoq xamir va yumshoq pishgan masalliq - bir-birini to'ldiradigan ajoyib duet.",m:"Somsani ikkiga bo'ling. Ichidagi masalliqni yaqinroq ko'rsating.",p:"Makro, 60 fps sekin, qarsillash SFX"},
+ {tag:"Qo'shimcha sotuv",v:"Ko'proq somsalar tog'oraga chiroyli qilib joylanadi.",t:"Aytgancha, mehmon-izlom uchun tog'oraga ham buyurtma berishingiz mumkin.",m:"Somsalar tog'oraga terilayotganini, keyin tayyor holatini ko'rsating.",p:"Yuqoridan (top-down), tez montaj"},
+ {tag:"Emotsional sotuv",v:"Tayyor, chiroyli tog'ora ko'rsatiladi. Ekspert yonida turadi.",t:"Qudalarnikiga borganda sizni uyaltirib qo'ymaydigan doda somsalar al-sahiyda sizni kutyapti!",m:"Tog'orani oldinga qo'yib, ekspertni ham kadrga kiriting.",p:"O'rta plan, tog'ora oldinda"},
+ {tag:"CTA",v:"Ekspert bitta somsani olib, kameraga qaraydi.",t:"Xo'sh, tatib ko'rishga kelasizmi?",m:"Ekspert kameraga qarab savol bersin. Somsalar kadrda qolsin.",p:"O'rta → yirik plan, kameraga qarash"}
+];
+const REFS=[["alsahiy_81","SMM dizayn"],["alsahiy_83","Stories"],["alsahiy_82","SMM dizayn qoidasi"],["alsahiy_25","Tipografika"],["alsahiy_32","Dizayn tizim"],["alsahiy_13","Logo rangli fonda"],["alsahiy_20","Bo'lim ranglari"],["alsahiy_23","Narx shrifti"]];
+const LOGOS=[["alsahiy_logo_qizil","Logotip - qizil","Oq fon uchun",0],["alsahiy_logo_oq","Logotip - oq","Qizil / to'q fon uchun",1],["alsahiy_yurak","Yurak simvoli","Oq fon uchun",0],["alsahiy_yurak_oq","Yurak simvoli - oq","Qizil fon uchun",1],["alsahiy_icon_qizil","Ikonka - qizil","Avatar, kichik joy",0],["alsahiy_icon_oq","Ikonka - oq","Qizil fon uchun",1]];
+
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove("on"),2200)}
+
+/* tablar */
+const VIEWS=["vazifa","ssenariy","ovoz","dizayn","baza"];
+function show(v){if(!VIEWS.includes(v))v="vazifa";
+  VIEWS.forEach(x=>{$("#v-"+x).hidden=x!==v});
+  document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));
+  window.scrollTo(0,0)}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{if(location.hash!=="#"+b.dataset.v)location.hash=b.dataset.v;else show(b.dataset.v)}));
+addEventListener("hashchange",()=>show(location.hash.slice(1)));
+show(location.hash.slice(1));
+
+/* kadrlar + belgilash */
+let done={};try{done=JSON.parse(localStorage.getItem("as-tz-kadr")||"{}")}catch(e){}
+function saveDone(){try{localStorage.setItem("as-tz-kadr",JSON.stringify(done))}catch(e){}}
+function prog(){const n=KADR.filter((_,i)=>done[i]).length;$("#pcount").textContent=n+" / "+KADR.length+" olindi";$("#pbar").style.width=(n/KADR.length*100)+"%"}
+$("#kadrlar").innerHTML=KADR.map((k,i)=>`
+<article class="kadr${done[i]?" done":""}" id="k${i}">
+  <div class="khead"><span class="knum">${i+1}</span><span class="ktag">${esc(k.tag)}</span>
+  <label class="check"><input type="checkbox" id="c${i}" data-i="${i}"${done[i]?" checked":""}>Olindi</label></div>
+  <p class="say">“${esc(k.t)}”</p>
+  <p class="kline"><b>Kadrda:</b> ${esc(k.v)}</p>
+  <div class="kdo"><b>Ko'rsatma</b>${esc(k.m)}</div>
+  <span class="chip">${esc(k.p)}</span>
+</article>`).join("");
+$("#kadrlar").addEventListener("change",e=>{const i=e.target.dataset.i;if(i==null)return;done[i]=e.target.checked;$("#k"+i).classList.toggle("done",e.target.checked);saveDone();prog()});
+prog();
+$("#lines").innerHTML=KADR.map((k,i)=>`<div><span>${i+1}</span><p>${esc(k.t)}</p></div>`).join("");
+
+/* audio */
+const a=$("#aud"),seek=$("#seek");
+const fmt=s=>{s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
+$("#play").addEventListener("click",()=>{a.paused?a.play().catch(()=>toast("Ovozni ijro etib bo'lmadi")):a.pause()});
+a.addEventListener("play",()=>{$("#ic-play").hidden=true;$("#ic-pause").hidden=false;$("#play").setAttribute("aria-label","To'xtatish")});
+a.addEventListener("pause",()=>{$("#ic-play").hidden=false;$("#ic-pause").hidden=true;$("#play").setAttribute("aria-label","Ijro etish")});
+a.addEventListener("loadedmetadata",()=>{seek.max=a.duration;$("#tdur").textContent=fmt(a.duration)});
+a.addEventListener("timeupdate",()=>{if(!seek.matches(":active"))seek.value=a.currentTime;$("#tcur").textContent=fmt(a.currentTime)});
+seek.addEventListener("input",()=>{a.currentTime=+seek.value;$("#tcur").textContent=fmt(seek.value)});
+
+/* referens */
+$("#refs").innerHTML=REFS.map(r=>`<button data-src="ref/${r[0]}.jpg"><img src="ref/${r[0]}.jpg" alt="${esc(r[1])}" loading="lazy"><span>${esc(r[1])}</span></button>`).join("");
+$("#refs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;$("#lbimg").src=b.dataset.src;$("#lb").hidden=false;$("#lbx").focus()});
+$("#lbx").addEventListener("click",()=>{$("#lb").hidden=true});
+$("#lb").addEventListener("click",e=>{if(e.target.id==="lb")$("#lb").hidden=true});
+addEventListener("keydown",e=>{if(e.key==="Escape")$("#lb").hidden=true});
+
+/* logolar */
+$("#logos").innerHTML=LOGOS.map(l=>`<div class="asset"><div class="thumb${l[3]?" redbg":""}"><img src="a/${l[0]}.svg" alt=""></div><div><h3>${esc(l[1])}</h3><p>${esc(l[2])}</p><div class="dl"><button class="btn" data-dl="a/${l[0]}.svg" data-name="${l[0]}.svg">SVG</button><button class="btn ghost" data-dl="a/${l[0]}.png" data-name="${l[0]}.png">PNG</button></div></div></div>`).join("");
+
+/* nusxa olish */
+document.addEventListener("click",async e=>{const b=e.target.closest("[data-copy]");if(!b)return;const v=b.dataset.copy;
+  try{await navigator.clipboard.writeText(v);toast(v+" nusxalandi")}catch(err){toast(v)}});
+
+/* yuklab olish */
+function save(name,data){const u=(typeof data==="string"&&/^(a|f|bb|audio)\//.test(data))?data:URL.createObjectURL(new Blob([data],{type:"text/plain;charset=utf-8"}));
+  const x=document.createElement("a");x.href=u;x.download=name;document.body.appendChild(x);x.click();x.remove();toast(name+" yuklanmoqda")}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-dl]");if(!b)return;save(b.dataset.name,b.dataset.dl)});
+$("#dl-script").addEventListener("click",()=>{
+  const txt="al-sahiy - Reels ssenariysi: Somsa turlari\nMaqsad: assortimentni ko'rsatish\nFormat: Instagram Reels 9:16, 1080x1920\n\n"+
+   KADR.map((k,i)=>`${i+1}-KADR (${k.tag})\nKadrda: ${k.v}\nMatn: "${k.t}"\nKo'rsatma: ${k.m}\nPlan: ${k.p}\n`).join("\n");
+  save("al-sahiy_somsa_ssenariy.txt",txt)});
+</script>
+
+</body></html>
