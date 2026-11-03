@@ -44,8 +44,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 main{padding-bottom:calc(var(--tabh) + env(safe-area-inset-bottom,0px) + 28px)}
 .view{display:flex;flex-direction:column;gap:40px;padding-block:24px 12px}
-h1{font-family:var(--head);font-size:36px;line-height:1.05;font-weight:800;text-transform:uppercase;margin:0;text-wrap:balance}
-h2{font-family:var(--head);font-size:24px;line-height:1.1;font-weight:800;text-transform:uppercase;margin:0 0 16px}
+h1{font-family:var(--head);font-size:36px;line-height:1.05;font-weight:400;letter-spacing:.03em;font-synthesis:none;text-transform:uppercase;margin:0;text-wrap:balance}
+h2{font-family:var(--head);font-size:24px;line-height:1.1;font-weight:400;letter-spacing:.04em;font-synthesis:none;text-transform:uppercase;margin:0 0 16px}
 p{margin:0}
 .lead{color:var(--muted);font-size:15px;margin-top:12px;line-height:1.6}
 .eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
@@ -88,7 +88,7 @@ p{margin:0}
 .kadr{border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:border-color .2s ease-out}
 .kadr.done{border-color:var(--ok)}
 .khead{display:flex;align-items:center;gap:12px;padding:8px 16px;background:var(--surface)}
-.knum{font-family:var(--head);font-size:26px;font-weight:800;line-height:1;color:var(--accent);min-width:32px}
+.knum{font-family:var(--head);font-size:26px;font-weight:400;font-synthesis:none;line-height:1;color:var(--accent);min-width:32px}
 .ktag{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);flex:1}
 .kf{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-top:1px solid var(--line);font-size:15px;line-height:1.5}
 .kf b{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
@@ -117,8 +117,8 @@ p{margin:0}
 /* brendbuk */
 .fonts{display:flex;flex-direction:column;border-top:1px solid var(--line)}
 .fonts>div{padding:18px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
-.f-long{font-family:"Longreach",sans-serif;font-size:34px;line-height:1;text-transform:uppercase}
-.f-saus{font-family:"Sausage",sans-serif;font-size:40px;line-height:1;color:var(--accent)}
+.f-long{font-family:"Longreach","Rubik",sans-serif;font-size:34px;line-height:1.05;text-transform:uppercase;letter-spacing:.03em;font-weight:400;font-synthesis:none}
+.f-saus{font-family:"Sausage","Rubik",sans-serif;font-synthesis:none;font-size:40px;line-height:1;color:var(--accent)}
 .f-saus small{font-size:18px}
 .f-rub{font-size:18px;font-weight:500}
 .fonts .k{font-size:14px;color:var(--muted)}
